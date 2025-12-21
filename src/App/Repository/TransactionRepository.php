@@ -18,7 +18,9 @@ class TransactionRepository{
 
     public function insertTransaction($transaction, $newSolde, $numeroDeCompte) : void{
 
-          $this->db->beginTransaction();
+          try 
+          {
+            $this->db->beginTransaction();
           
 
         $sql = "
@@ -56,6 +58,7 @@ class TransactionRepository{
   $this->db->rollBack();
   echo "Erreur : " . $e->getMessage();
     }
+}
 
     
 
