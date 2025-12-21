@@ -1,0 +1,17 @@
+{
+    "name": "youho/composer_gestion_bancaire",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/App/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Youkyl",
+            "email": "youhounk@gmail.com"
+        }
+    ],
+    "require": {}
+}
