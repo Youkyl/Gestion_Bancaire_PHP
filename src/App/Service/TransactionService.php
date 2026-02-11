@@ -51,10 +51,7 @@ class TransactionService
                 return false;
             }
 
-            $this->comptesService->initilizationSolde(
-                $numeroDeCompte,
-                $compte->getSolde() - $montantFinal
-            );
+                  $compte->setSolde($compte->getSolde()-$montantFinal) ;  
         }
         else {
 
@@ -65,21 +62,15 @@ class TransactionService
                     print("Frais de transaction appliqués : " . $frais . "\n");
 
                 }
-
-                $this->comptesService->initilizationSolde(
-                    $numeroDeCompte,
-                    $compte->getSolde() + $montantFinal
-                );
+                  $compte->setSolde($compte->getSolde()+$montantFinal) ;                
 
         }
 
         $transaction = new Transaction(
-            $montant,
-            $type,
-            $compte->getNumeroDeCompte(),
-            $frais,
-            null,
-            null
+            montant: $montantFinal,
+            type: $type,
+            compte:  $compte,
+            frais:$frais,
         );
 
         $this->transactionRepo->insertTransaction($transaction);

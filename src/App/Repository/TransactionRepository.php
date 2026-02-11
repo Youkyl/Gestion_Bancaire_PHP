@@ -4,6 +4,7 @@ namespace App\Repository;
 use App\Config\Database;
 use App\entity\Transaction;
 use App\entity\TypeDeTransaction;
+use Exception;
 use PDO;
 
 class TransactionRepository{
@@ -16,7 +17,7 @@ class TransactionRepository{
         $this->db = Database::getConnection();
     }
 
-    public function insertTransaction($transaction, $newSolde, $numeroDeCompte) : void{
+    public function insertTransaction($transaction) : void{
 
           try 
           {
@@ -46,8 +47,8 @@ class TransactionRepository{
         $stmt = $this->db->prepare($sql);   
 
         $stmt->execute([
-            ':solde' => $newSolde,
-            ':num' => $numeroDeCompte
+            ':solde' => $transaction->getCompte()->getSolde(),
+            ':num' => $transaction->getCompte()->getNumeroDeCompte()
         ]);
         $this->db->commit();
 
@@ -59,8 +60,6 @@ class TransactionRepository{
   echo "Erreur : " . $e->getMessage();
     }
 }
-
-    
 
 
     public function selectTransaction($numeroDeCompte):array{
@@ -79,11 +78,10 @@ class TransactionRepository{
 
         while ($row = $stmt->fetch()) {
             $transactions[] = new Transaction(
-                $row['montant'],
-                TypeDeTransaction::fromDatabase($row['type']),
-                null,
-                $row['date'],
-                $row['id']
+                 montant:$row['montant'],
+                 type:TypeDeTransaction::fromDatabase($row['type']),
+                 id: $row['id'],
+                 frais:$row['frais']
             );
 
             $row = $stmt->fetch();

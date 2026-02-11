@@ -5,20 +5,20 @@ namespace App\Entity;
 
 class Comptes
 {
-    private  $id;
-    private  $numeroDeCompte;
-    private  $solde;
-    private  $type;
-    private  $dureeDeblocage;
-    private  $transactions;
+    private  ?int $id;
+    private  string $numeroDeCompte;
+    private  float $solde;
+    private  TypeDeCompte $type;
+    private  ?int $dureeDeblocage;
+    private  array $transactions;
 
     public function __construct(
-         $numeroDeCompte,
-         $solde,
-         $type,
-         $dureeDeblocage = null,
-         $id = null,
-         $transactions = []
+         string | null $numeroDeCompte = null,
+         float $solde = 0.0,
+         TypeDeCompte $type,
+         int | null $dureeDeblocage = null,
+         int | null $id = null,
+         array $transactions = []
     ) {
         $this->id = $id;
         $this->numeroDeCompte = $numeroDeCompte;

@@ -16,9 +16,9 @@ class Database
         if (self::$pdo === null) {
             try {
                 self::$pdo = new PDO(
-                    "pgsql:host=localhost;port=5432;dbname=gestion_bancairedbase",
-                    "postgres",
-                    "1551",
+                    $_ENV['DATABASE_URL'],
+                    $_ENV['DATABASE_USER'],
+                    $_ENV['DATABASE_PASSWORD'],
                     [
                         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC

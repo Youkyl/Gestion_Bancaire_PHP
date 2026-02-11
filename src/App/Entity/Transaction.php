@@ -3,22 +3,25 @@
 
 namespace App\Entity;
 
+use DateTime;
+
 class Transaction{
 
-    private $id;
-    private $montant;
-    private $type;
-    private $compte;
-    private $date;
-    private $frais;
+    private int|null $id;
+    private float $montant;
+    private TypeDeTransaction $type;
+    private Comptes | null $compte;
+    private DateTime | null $date;
+    private float $frais;
+
 
     public function __construct(
-        $montant,
-        $type,
-        $compte,
-        $frais,
-        $date = null,
-        $id = null
+          float  $montant,
+          TypeDeTransaction  $type,
+           float $frais,
+           Comptes|null $compte=null,
+           DateTime|null $date = null,
+          int|null $id = null
     ) {
         $this->id = $id;
         $this->montant = $montant;
@@ -33,42 +36,112 @@ class Transaction{
 
     }
 
-
-    public function getId(): ?string
+    /**
+     * Get the value of id
+     */
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getMontant(): float
+    /**
+     * Set the value of id
+     */
+    public function setId($id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of montant
+     */
+    public function getMontant()
     {
         return $this->montant;
     }
 
-    public function getType(): string
+    /**
+     * Set the value of montant
+     */
+    public function setMontant($montant): self
+    {
+        $this->montant = $montant;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of type
+     */
+    public function getType()
     {
         return $this->type;
     }
 
-    public function getCompte(): Comptes
+    /**
+     * Set the value of type
+     */
+    public function setType($type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of compte
+     */
+    public function getCompte()
     {
         return $this->compte;
     }
 
-    public function getDate(): string
+    /**
+     * Set the value of compte
+     */
+    public function setCompte($compte): self
+    {
+        $this->compte = $compte;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date
+     */
+    public function getDate()
     {
         return $this->date;
     }
 
+    /**
+     * Set the value of date
+     */
+    public function setDate($date): self
+    {
+        $this->date = $date;
 
-    public function getFrais(): float
+        return $this;
+    }
+
+    /**
+     * Get the value of frais
+     */
+    public function getFrais()
     {
         return $this->frais;
     }
 
-    public function __toString()
+    /**
+     * Set the value of frais
+     */
+    public function setFrais($frais): self
     {
-        return "Transaction ID: " . $this->id . ", Montant: " . $this->montant . ", Type: " . $this->type . ", Date: " . $this->date;
+        $this->frais = $frais;
 
+        return $this;
     }
 
 
